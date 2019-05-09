@@ -1,3 +1,5 @@
+package( default_visibility = [ "//visibility:public" ] )
+
 toolchain(
     name = "built_cmake_toolchain",
     exec_compatible_with = [
@@ -8,14 +10,14 @@ toolchain(
     toolchain_type = "@rules_foreign_cc//tools/build_defs:cmake_toolchain",
 )
 
-load("@rules_foreign_cc//for_workspace:cmake_build.bzl", "cmake_tool")
+load( "@rules_foreign_cc//for_workspace:cmake_build.bzl", "cmake_tool" )
 
 cmake_tool(
     name = "cmaketool",
     cmake_srcs = "@cmake//:all",
 )
 
-load("@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external")
+load( "@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external" )
 
 cc_binary(
     name = "main",
