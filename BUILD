@@ -22,5 +22,6 @@ load( "@rules_foreign_cc//tools/build_defs:cmake.bzl", "cmake_external" )
 cc_binary(
     name = "main",
     srcs = [ "test.cc", ],
+    copts = [ "-Iignition/math6", ],
     deps = [ "@ignition-math//:ignition-math", ],
 )
