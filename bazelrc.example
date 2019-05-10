@@ -1,0 +1,5 @@
+# Put this in your home folder and name it '.bazelrc' to improve concurrency.
+
+startup --batch_cpu_scheduling --io_nice_level 7
+build --jobs 6 --ram_utilization_factor 50
+test --jobs 6

@@ -11,7 +11,7 @@ cmake_external(
         "BUILD_SHARED_LIBS": "OFF",
     },
     static_libraries = [ "libignition-transport6.a", ],
-    deps = [ "@ignition-cmake//:ignition_cmake_cmake", ],
+    deps = [ "@ignition-cmake//:ignition-cmake", ],
 )
 
 cc_library(
