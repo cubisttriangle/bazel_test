@@ -7,12 +7,11 @@ cmake_external(
     lib_source = "all",
     deps = [],
     headers_only = True,
-    visibility = [ "//visibility:public" ],
 )
 
 cc_library(
     name = "ignition-cmake",
-    strip_include_prefix = "include/ignition/math6",
+    strip_include_prefix = "include",
     hdrs = glob( [ "include/**/*.hh", ] ),
     deps = [ "ignition_cmake_cmake", ],
     visibility = [ "//visibility:public" ],

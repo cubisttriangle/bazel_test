@@ -38,6 +38,22 @@ http_archive(
     build_file_content = all_content,
 )
 
+# Ignition transport.
+http_archive(
+    name = "ignition-transport",
+    urls = [ "https://bitbucket.org/ignitionrobotics/ign-transport/get/ignition-transport6_6.0.0.zip", ],
+    strip_prefix = "ignitionrobotics-ign-transport-527a03c930b3",
+    build_file = "@//:external/ignition-transport.BUILD",
+)
+
+# Ignition msgs.
+http_archive(
+    name = "ignition-msgs",
+    urls = [ "https://bitbucket.org/ignitionrobotics/ign-msgs/get/ignition-msgs3_3.2.0.zip", ],
+    strip_prefix = "ignitionrobotics-ign-msgs-1640841acd7e",
+    build_file = "@//:external/ignition-msgs.BUILD",
+)
+
 # Ignition math.
 http_archive(
     name = "ignition-math",
@@ -52,4 +68,35 @@ http_archive(
     urls = [ "https://bitbucket.org/ignitionrobotics/ign-cmake/get/ignition-cmake2_2.0.0.zip", ],
     strip_prefix = "ignitionrobotics-ign-cmake-1ff49389e33c",
     build_file = "@//:external/ignition-cmake.BUILD",
+)
+
+# Ignition tools.
+http_archive(
+    name = "ignition-tools",
+    urls = [ "https://bitbucket.org/ignitionrobotics/ign-tools/get/ignition-tools_0.1.0.zip", ],
+    strip_prefix = "ignitionrobotics-ign-tools-e775d6356667",
+    build_file = "@//:external/ignition-tools.BUILD",
+)
+
+# Google protobuf.
+# https://github.com/protocolbuffers/protobuf/issues/5472
+# https://github.com/protocolbuffers/protobuf/pull/5784
+# TODO: Update to 3.8 when it comes out.
+protobuf_ver = "3.8.0-rc1"
+http_archive(
+    name = "com_google_protobuf",
+    urls = [ "https://github.com/protocolbuffers/protobuf/archive/v{}.zip".format( protobuf_ver ), ],
+    strip_prefix = "protobuf-{}".format( protobuf_ver ),
+)
+load( "@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps" )
+protobuf_deps()
+
+
+# Google Test.
+gtest_ver = "1.8.1"
+http_archive(
+    name = "gtest",
+    urls = [ "https://github.com/google/googletest/archive/release-{}.zip".format( gtest_ver ), ],
+    strip_prefix = "googletest-release-{}".format( gtest_ver ),
+    build_file = "@//:external/gtest.BUILD",
 )
