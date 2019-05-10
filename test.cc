@@ -1,5 +1,5 @@
 #include <ignition/math.hh>
-#include <ignition/msgs.hh>
+//#include <ignition/msgs.hh>
 
 #include <iostream>
 
@@ -12,11 +12,13 @@ int main()
     std::cout << "Distance from " << point1 << " to " << point2 << " is "
               <<  distance << std::endl;
   
+/*
     ignition::msgs::Vector3d mp1 = ignition::msgs::Convert( point1 );
     ignition::msgs::Vector3d mp2 = ignition::msgs::Convert( point2 );
 
     std::cout << "msgs::mp1:\n" << mp1.DebugString() << std::endl;
     std::cout << "msgs::mp2:\n" << mp2.DebugString() << std::endl;
+*/
 
     return 0;
 }

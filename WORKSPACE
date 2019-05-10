@@ -27,7 +27,12 @@ http_archive(
    url = "https://github.com/bazelbuild/rules_foreign_cc/archive/master.zip",
 )
 load("@rules_foreign_cc//:workspace_definitions.bzl", "rules_foreign_cc_dependencies")
-rules_foreign_cc_dependencies( [ "//:built_cmake_toolchain" ], True )
+rules_foreign_cc_dependencies( [
+        "//:linux_aarch64",
+        "//:linux_x86",
+        "//:mac_x86",
+    ],
+    True )
 
 # CMake
 cmake_version = "3.14.3"
