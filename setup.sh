@@ -5,7 +5,7 @@ BIN_DIR="$PREFIX_DIR/bin"
 
 PLATFORM="amd64"
 
-BAZEL_VER="0.25.1"
+BAZEL_VER="0.25.2"
 BAZEL_DL="bazel-$BAZEL_VER-dist.zip"
 BAZEL_URL="https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VER/$BAZEL_DL"
 BAZEL_DST="bazel-$BAZEL_VER"
@@ -45,15 +45,11 @@ update_path()
     source "$RC_FILE" || warn "Couldn't source rc file: '$RC_FILE'."
 }
 
-install_misc_deps()
-{
-    sudo apt install -y ruby || fatal "Couldn't install random deps needed for proj."
-}
-
 install_java()
 {
     # Currently, ONLY jdk 8 is supported.
-    local jdk="openjdk-8-jdk"
+    local jdk_ver="8"
+    local jdk="openjdk-$jdk_ver-jdk"
 
     sudo apt install -y "$jdk" || fatal "Couldn't install java jdk, '$jdk'."
 
@@ -61,7 +57,7 @@ install_java()
 
         info "JAVA_HOME not set. Adding to '$ENV_FILE'."
 
-        echo "JAVA_HOME=/usr/lib/jvm/$jdk-$PLATFORM" | sudo tee -a "$ENV_FILE"
+        echo "JAVA_HOME=/usr/lib/jvm/java-$jdk_ver-openjdk-$PLATFORM" | sudo tee -a "$ENV_FILE"
 
         source "$ENV_FILE"
 
@@ -121,7 +117,6 @@ install_bazel()
 source "$ENV_FILE"
 update_ld
 sudo apt update || warn "Couldn't get latest pkg sources."
-install_misc_deps
 install_bazel
 
 info "Currently, you may want to add 'source /etc/environment' to your .bashrc file."
